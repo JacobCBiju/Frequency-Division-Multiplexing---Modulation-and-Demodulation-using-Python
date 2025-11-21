@@ -35,44 +35,70 @@ __Procedure__:
 __Program__:
 
 t = linspace(0, 1, 1000);
+
 freqs = [5, 5.5, 6, 6.5, 7, 7.5];
 
 signals = zeros(6, length(t));
+
 for i = 1:6
-    signals(i, :) = sin(2 * %pi * freqs(i) * t);
+
+signals(i, :) = sin(2 * %pi * freqs(i) * t);
+
 end
 
 fdm_signal = zeros(1, length(t));
+
 for i = 1:6
-    fdm_signal = fdm_signal + signals(i, :);
+
+fdm_signal = fdm_signal + signals(i, :);
+
 end
 
 demux_signals = zeros(6, length(t));
+
 for i = 1:6
-    demux_signals(i, :) = fdm_signal .* sin(2 * %pi * freqs(i) * t);
+
+demux_signals(i, :) = fdm_signal .* sin(2 * %pi * freqs(i) * t);
+
 end
 
 scf(1);
+
 clf;
+
 for i = 1:6
-    subplot(3,2,i);
-    plot(t, signals(i, :));
-    title('Original Signal f=' + string(freqs(i)));
+
+subplot(3,2,i);
+
+plot(t, signals(i, :));
+
+title('Original Signal f=' + string(freqs(i)));
+
 end
 
 
 scf(2);
+
 clf;
+
 plot(t, fdm_signal);
+
 title("FDM Signal");
 
 scf(3);
+
 clf;
+
 for i = 1:6
-    subplot(3,2,i);
-    plot(t, demux_signals(i, :));
-    title('Demultiplexed Signal f=' + string(freqs(i)));
+
+subplot(3,2,i);
+
+plot(t, demux_signals(i, :));
+
+title('Demultiplexed Signal f=' + string(freqs(i)));
+
 end
+
 __Output_:
 
 <img width="762" height="696" alt="image" src="https://github.com/user-attachments/assets/b7dd9df8-f85f-4e42-be6e-5099b1e3ed82" />
